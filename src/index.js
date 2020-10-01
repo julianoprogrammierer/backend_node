@@ -1,7 +1,11 @@
 const express = require('express');
+
+
+const { uuid } = require('uuidv4');
 const { request, response } = require('express');
  
 const app = express();
+app.use(express.json());
 
 
 
@@ -9,35 +13,32 @@ const app = express();
 
 
 
-
-
+const projects = [];
 app.get('/projects', (request, response)=>{
     
-   const {title, owner } = request.query;
-   console.log(title);
-   console.log(owner);
+   //const {title, owner } = request.query;
+   //console.log(title);
+   //console.log(owner);
    
-   return response.json([
-        'project 1',
-        'project 2',
-        'project 3',
-    ]);
+   return response.json(projects);
 });
 app.post('/projects', (request, response)=>{
-    return response.json([
-        'project 1',
-        'project 2',
-        'project 3',
-        'project 5',
-    ]);
+    const { title, owner } = request.body;
+    const project = { id: uuid(), title, owner };
+    projects.push(project);
+
+    return response.json(project);
 });
 
 app.put('/projects/:id', (request, response)=>{
+    const params = request.params;
+    console.log(params);
+    
     return response.json([
-        'project 6',
+        'project 4',
         'project 2',
         'project 3',
-        'project 5',
+        
     ]);
 });
 app.delete('/projects/:id', (request, response)=>{
@@ -45,7 +46,7 @@ app.delete('/projects/:id', (request, response)=>{
         
         'project 2',
         'project 3',
-        'project 5',
+       
     ]);
 });
 
