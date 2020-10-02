@@ -64,5 +64,5 @@ app.delete('/projects/:id', (request, response)=>{
 
 
 app.listen(3333, ()=> {
-    console.log('Back-end loading....™\nBack-end Live!✔');
+    console.log('Back-end loading...™\nBack-end Live!✔');
 });
